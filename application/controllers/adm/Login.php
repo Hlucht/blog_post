@@ -91,7 +91,7 @@ class Login extends CI_Controller {
 		$this->load->view('backend/template/html-footer');
 	}
 
-	public function update()
+	public function update($userCom)
 	{
 		if(!$this->session->userdata('logged')) {
 			redirect(base_url('adm/login'));
@@ -103,7 +103,13 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('txt-nome', 'Nome do usuário', 'required|min_length[3]');
 		$this->form_validation->set_rules('txt-email', 'Email', 'required|valid_email');
 		$this->form_validation->set_rules('txt-historico', 'Histórico', 'required|min_length[20]');
-		$this->form_validation->set_rules('txt-user', 'User', 'required|min_length[3]|is_unique[usuarios.user]');
+
+		$user= $this->input->post('txt-user');
+
+		if($userCom != $user){
+			$this->form_validation->set_rules('txt-user','User', 'required|min_length[3]|is_unique[usuario.user]');
+		}
+
 		$this->form_validation->set_rules('txt-senha', 'Senha', 'required|min_length[3]');
 		$this->form_validation->set_rules('txt-confirmar-senha', 'Confirmar senha', 'required|matches[txt-senha]');
 		
