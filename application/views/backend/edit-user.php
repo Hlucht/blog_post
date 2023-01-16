@@ -18,9 +18,9 @@
                         <div class="col-lg-12">
                             <?php 
                                 echo validation_errors('<div class="alert alert-danger">','</div>');
-                                echo form_open('adm/login/update');
             
                                 foreach($users as $user){
+                                    echo form_open('adm/login/update' .'/' .$user->user);
                             ?>
 
                             <div class="form-group">
